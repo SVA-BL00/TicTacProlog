@@ -53,7 +53,7 @@ make_table :-
 ```
 ## Explicación del código
 ### Representación del juego
-    ###Estado inicial
+####Estado inicial
         initial_board([_, _, _,
                    _, _, _,
                    _, _, _]).
