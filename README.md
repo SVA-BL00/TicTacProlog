@@ -52,8 +52,8 @@ make_table :-
     send(P, open).
 ```
 ## Explicación del código
-    #Representación del juego
-    #Estado inicial
+### Representación del juego
+    ###Estado inicial
         initial_board([_, _, _,
                    _, _, _,
                    _, _, _]).
