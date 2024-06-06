@@ -52,5 +52,13 @@ make_table :-
     send(P, open).
 ```
 ## Explicación del código
-(Explicar lógica)
+    #Representación del juego
+    #Estado inicial
+        initial_board([_, _, _,
+                   _, _, _,
+                   _, _, _]).
+        El estado inicial es una lista completamente vacía que representa el tablero.
+
+
+
 ## Test Cases
