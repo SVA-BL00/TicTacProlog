@@ -5,6 +5,11 @@ Corre el siguiente comando
 ```
 start.
 ```
+## Test Cases
+### Casos en los que gana la computadora
+### Casos en los que gana quien juega
+
+
 ## Documentación
 ### UI
 Para el UI, se utiliza la librería xpce, tabular para hacer una tabla más eficientemente y autowin para modificar el tamaño de la ventana automáticamente.
@@ -51,9 +56,6 @@ make_table :-
 
     send(P, open).
 ```
-## Test Cases
-
-
 ## Explicación del código
 #### Importar las librerías necesarias
 ```
