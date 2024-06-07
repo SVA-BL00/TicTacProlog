@@ -160,23 +160,112 @@ valid_move(Board, Position) :-
     nth1(Position, Board, Value),
     var(Value).
 ```
-Este predicado revisa si la posición no está ocupada ya.
+Este predicado revisa que la posición no esté ocupada.
 
-### Representación del juego
+#### Cambio de jugador
+```
+switch_player(x, o).
+switch_player(o, x).
+```
+Una función que cambia el jugador.
 
+#### Tablero, jugador y mapa dinámicos
+```
+:- dynamic current_board/1.
+:- dynamic current_player/1.
+:- dynamic button_mapping/1.
+```
+Se declaran como predicados dinámicos para que su valor pueda cambiar durante el juego.
 
+#### Inicializar el juego
+```
+initialize_game :-
+    initial_board(Board),
+    retractall(current_board(_)),
+    asserta(current_board(Board)),
+    retractall(current_player(_)),
+    asserta(current_player(x)),
+    retractall(button_mapping(_)),
+    asserta(button_mapping([])).
+```
+El juego se inicializa con el tablero inicial, se elige la marca del jugador (en este caso x) y 
+se borra la asignación de botones.
 
-#### Estado inicial
+#### Comenzar el juego
+´´´
+start :-
+    initialize_game,
+    make_table.
+´´´
+Aquí se inicializa el juego y se manda a llamar la interfaz gráfica mencionada al inicio del documento.
 
+#### Al presionar un botón
+´´´
+button_clicked(Position, Button) :-
+    current_board(Board),
+    current_player(Player),
+    (valid_move(Board, Position) ->
+        make_move(Board, Position, Player, NewBoard),
+        send(Button, label, Player),
+        send(Button, active, @off),
+        retract(current_board(_)),
+        asserta(current_board(NewBoard)),
+        (winner(NewBoard, Player) ->
+            format("Player ~w wins!\n", [Player]),
+            disable_all_buttons
+            ;
+            (board_full(NewBoard) ->
+                format("It's a draw!\n"),
+                disable_all_buttons
+                ;
+                switch_player(Player, NextPlayer),
+                retract(current_player(_)),
+                asserta(current_player(NextPlayer)),
+                (NextPlayer = o -> 
+                    choose_move(NewBoard, CompPosition),
+                    button_mapping(Buttons),
+                    nth1(CompPosition, Buttons, CompButton),
+                    computer_move(CompPosition, CompButton)
+                    ;
+                    true
+                )
+            )
+        )
+        ;
+        format("Invalid move. Try again.\n")
+    ).
+´´´
+Esta función detecta cuando un botón fue presionado por el jugador.
+Agrega el movimiento del jugador al tablero y revisa si alguien ganó o hubo empate.
+Después hace el cambio de jugador.
 
-#### Estado final
-        
+#### Movimiento de la computadora
+```
 
-### Lógica del juego
-
-
-#### Movimientos válidos
-Como jugador, el movimiento que puedes realizar es insertar una x en una casilla vacía presionando un botón.
-
+computer_move(Position, Button) :-
+    current_board(Board),
+    current_player(Player),
+    Player = o,
+    (valid_move(Board, Position) ->
+        make_move(Board, Position, Player, NewBoard),
+        send(Button, label, Player),
+        send(Button, active, @off),
+        retract(current_board(_)),
+        asserta(current_board(NewBoard)),
+        (winner(NewBoard, Player) ->
+            format("Player ~w wins!\n", [Player]),
+            disable_all_buttons
+            ;
+            (board_full(NewBoard) ->
+                format("It's a draw!\n"),
+                disable_all_buttons
+                ;
+                switch_player(Player, NextPlayer),
+                retract(current_player(_)),
+                asserta(current_player(NextPlayer))
+            )
+        )
+    ).
+```
 
 ## Test Cases
