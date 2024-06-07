@@ -51,6 +51,9 @@ make_table :-
 
     send(P, open).
 ```
+## Test Cases
+
+
 ## Explicación del código
 #### Importar las librerías necesarias
 ```
@@ -278,10 +281,8 @@ disable_all_buttons :-
 ```
 En cuanto se termina el juego se deshabilitan todos los botones.
 
-#### Comenzar el juego
+#### Comando inicial para comenzar el juego
 ```
 :- start.
 ```
 Este comando se utiliza para comenzar el juego completo.
-
-## Test Cases
