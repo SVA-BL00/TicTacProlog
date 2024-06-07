@@ -53,38 +53,44 @@ make_table :-
 ```
 ## Explicación del código
 #### Importar las librerías necesarias
+```
 :- use_module(library(pce)).
 :- use_module(library(tabular)).
 :- use_module(library(autowin)).
-
+```
 El primer paso es importar las librerías que se utilizan para el UI.
 
 #### Definición del cuadrado mágico
+```
 magic_square(\[2, 7, 6, 
               9, 5, 1, 
               4, 3, 8\]).
-
+```
 El segundo paso es implementar un cuadrado mágico. 
 La suma de todas sus columnas, filas y diagonales da 15. 
 Se utilizará para las condición de éxito.
 
 #### Estado inicial
+```
 initial_board(\[_,_,_,
               _,_,_,
               _,_,_\]).
+```
 El estado inicial es una lista completamente vacía que representa al tablero.
 
 #### Revisar si el tablero está lleno
+```
 board_full(Board) :-
     \+ member(_, Board).
-
+```
 Esta sentencia revisa que no haya variables libres en el tablero.
 Si hay aunque sea una variable libre, significa que el tablero no está lleno, por lo que regresa falso.
 
 ### Sumar la lista 
+```
 sum_list([], 0).
 sum_list([H|T], Sum) :- sum_list(T, Rest), Sum is H + Rest.
-
+```
 ### Representación del juego
 
 
