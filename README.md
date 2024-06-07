@@ -192,15 +192,15 @@ El juego se inicializa con el tablero inicial, se elige la marca del jugador (en
 se borra la asignación de botones.
 
 #### Comenzar el juego
-´´´
+```
 start :-
     initialize_game,
     make_table.
-´´´
+```
 Aquí se inicializa el juego y se manda a llamar la interfaz gráfica mencionada al inicio del documento.
 
 #### Al presionar un botón
-´´´
+```
 button_clicked(Position, Button) :-
     current_board(Board),
     current_player(Player),
@@ -234,7 +234,7 @@ button_clicked(Position, Button) :-
         ;
         format("Invalid move. Try again.\n")
     ).
-´´´
+```
 Esta función detecta cuando un botón fue presionado por el jugador.
 Agrega el movimiento del jugador al tablero y revisa si alguien ganó o hubo empate.
 Después hace el cambio de jugador.
@@ -271,17 +271,17 @@ En base a esto hace un movimiento. Éste se agrega al tablero y de igual manera 
 Una vez hecho el movimiento, se hace el cambio de jugador.
 
 #### Terminar juego
-´´´
+```
 disable_all_buttons :-
     button_mapping(Buttons),
     maplist({@off}/[Button]>>send(Button, active, @off), Buttons).
-´´´
+```
 En cuanto se termina el juego se deshabilitan todos los botones.
 
 #### Comenzar el juego
-´´´
+```
 :- start.
-´´´
+```
 Este comando se utiliza para comenzar el juego completo.
 
 ## Test Cases
