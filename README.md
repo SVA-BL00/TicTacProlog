@@ -241,7 +241,6 @@ Después hace el cambio de jugador.
 
 #### Movimiento de la computadora
 ```
-
 computer_move(Position, Button) :-
     current_board(Board),
     current_player(Player),
@@ -267,5 +266,22 @@ computer_move(Position, Button) :-
         )
     ).
 ```
+Manda a llamar la función anteriormente descrita, que busca el mejor movimiento siguiente utilizando el cuadro mágico.
+En base a esto hace un movimiento. Éste se agrega al tablero y de igual manera se revisa si alguien ganó o si hubo empate.
+Una vez hecho el movimiento, se hace el cambio de jugador.
+
+#### Terminar juego
+´´´
+disable_all_buttons :-
+    button_mapping(Buttons),
+    maplist({@off}/[Button]>>send(Button, active, @off), Buttons).
+´´´
+En cuanto se termina el juego se deshabilitan todos los botones.
+
+#### Comenzar el juego
+´´´
+:- start.
+´´´
+Este comando se utiliza para comenzar el juego completo.
 
 ## Test Cases
