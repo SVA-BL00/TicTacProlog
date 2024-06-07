@@ -125,16 +125,47 @@ Se comparan las marcas el tablero con cada una de las posiciones ganadoras.
 Si las 3 marcas en las 3 posiciones ganadoras son idénticas a la del jugador actual, significa que ganó.
 Regresa verdadero si el jugador actual ganó.
 
-#### Hacer movimiento
+#### Hacer movimiento (Jugador)
 ```
 make_move(Board, Position, Player, NewBoard) :-
     nth1(Position, Board, _, Rest),
     nth1(Position, NewBoard, Player, Rest).
 ```
-Se definió esta función para permitir que el jugador actual realice un movimiento.
-Genera un tablero nuevo tablero en el que se agrega la marca actual (x,o)
+Se definió esta función para permitir que el jugador realice un movimiento.
+Genera un tablero nuevo tablero en el que se agrega la marca actual (x,o).
+
+### Elegir movimiento (Computadora)
+```
+choose_move(Board, Position) :-
+    findall(Pos-MagicValue, (between(1, 9, Pos), valid_move(Board, Pos), magic_square_value(Pos, MagicValue)), ValidMoves),
+    keysort(ValidMoves, SortedMoves),
+    member(Position-_, SortedMoves).
+```
+La función genera valores válidos de posiciones que podría elegir la computadora.
+Revisa que estén entre 1 y 9 y que la posición no esté ocupada.
+Junta esas posiciones con el valor que tendrían en el cuadro mágico. 
+En base a los valores del cuadro mágico, elige el mejor movimiento.
+
+#### Valor del cuadrado mágico
+```
+magic_square_value(Position, Value) :-
+    magic_square(Square),
+    nth1(Position, Square, Value).
+```
+Esta función regresa el valor que tiene una determinada posición en el cuadro mágico.
+
+#### Movimiento válido
+```
+valid_move(Board, Position) :- 
+    nth1(Position, Board, Value),
+    var(Value).
+```
+Este predicado revisa si la posición no está ocupada ya.
 
 ### Representación del juego
+
+
+
 #### Estado inicial
 
 
