@@ -6,9 +6,20 @@ Corre el siguiente comando
 start.
 ```
 ## Test Cases
+
+
 ### Casos en los que gana la computadora
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-gana-la-computadora-0.PNG?raw=true)
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-gana-la-computadora-1.PNG?raw=true)
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-gana-la-computadora-2.PNG?raw=true)
 ### Casos en los que gana quien juega
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-gana-quien-juega-0.PNG?raw=true)
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-gana-quien-juega-1.PNG?raw=true)
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-gana-quien-juega-2.PNG?raw=true)
 ### Casos en los que hay empate
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-hay-empate-0.PNG?raw=true)
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-hay-empate-1.PNG?raw=true)
+![texto cualquiera por si no carga la imagen](https://github.com/SVA-BL00/TicTacProlog/blob/main/IMG/Casos-en-los-que-hay-empate-2.PNG?raw=true)
 
 
 ## Documentación
@@ -173,7 +184,7 @@ Este predicado revisa que la posición no esté ocupada.
 switch_player(x, o).
 switch_player(o, x).
 ```
-Una función que cambia el jugador.
+Una función que cambia el turno entre jugador
 
 #### Tablero, jugador y mapa dinámicos
 ```
