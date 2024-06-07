@@ -8,6 +8,7 @@ start.
 ## Test Cases
 ### Casos en los que gana la computadora
 ### Casos en los que gana quien juega
+### Casos en los que hay empate
 
 
 ## Documentación
